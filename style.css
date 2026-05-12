@@ -1,0 +1,79 @@
+:root {
+}
+
+.footer {
+  padding: 4rem 1.5rem;
+  border-top: 1px solid rgba(255,255,255,.08);
+  text-align: center;
+}
+
+.footer-logo img {
+  width: 80px;
+  margin: 0 auto 2rem;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.footer-links a {
+  color: rgba(255,255,255,.7);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.footer-links a:hover {
+  color: var(--offwhite);
+}
+
+.footer-copy {
+  color: rgba(255,255,255,.35);
+  font-size: .85rem;
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeHero 1.6s ease forwards;
+}
+
+@keyframes fadeHero {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: 1s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (min-width: 768px) {
+
+  .section-padding {
+    padding: 8rem 4rem;
+  }
+
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .experience-grid,
+  .editorial-block {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card-content {
+    padding: 3rem;
+  }
+
+}
