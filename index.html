@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta name="description" content="ANCARES TRAIL es una carrera de trail running en el Valle de Ancares, León. Montaña salvaje, otoño y una experiencia premium en uno de los territorios más espectaculares del norte de España. 3 de octubre de 2026.">
+<meta name="keywords" content="Ancares Trail, trail running León, carrera montaña León, trail Ancares, carrera trail España, trail running Castilla y León, Cuiña, Miravalles, Campanario, Valle de Ancares">
+<meta name="author" content="ANCARES TRAIL">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://ancarestrail.es/">
+
+<link rel="icon" type="image/png" sizes="48x48" href="favicon-48x48.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<meta property="og:title" content="ANCARES TRAIL | Trail Running en el Valle de Ancares">
+<meta property="og:description" content="Montaña salvaje, senderos ancestrales y otoño en el Valle de Ancares.">
+<meta property="og:image" content="https://ancarestrail.es/logo.jpg">
+<meta property="og:url" content="https://ancarestrail.es/">
+<meta property="og:type" content="website">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ANCARES TRAIL">
+<meta name="twitter:description" content="Trail running en el Valle de Ancares, León.">
+<meta name="twitter:image" content="https://ancarestrail.es/logo.jpg">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SportsEvent",
+  "name": "ANCARES TRAIL",
+  "startDate": "2026-10-03",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "location": {
+    "@type": "Place",
+    "name": "Valle de Ancares",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "León",
+      "addressCountry": "ES"
+    }
+  },
+  "image": ["https://ancarestrail.es/logo.jpg"],
+  "description": "Carrera de trail running en el Valle de Ancares. 30 km por las cimas de Campanario, Cuiña y Miravalles. 3 de octubre de 2026.",
+  "organizer": {
+    "@type": "Organization",
+    "name": "ANCARES TRAIL",
+    "url": "https://ancarestrail.es"
+  }
+}
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ANCARES TRAIL | Trail Running en el Valle de Ancares</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{ margin:0; padding:0; box-sizing:border-box; max-width:100%; }
+
+:root{
+  --black:#111111;
+  --forest:#1D3B2A;
+  --stone:#D8D1C5;
+  --off:#F5F2ED;
+  --earth:#5E4632;
+  --green:#4a8c52;
+}
+
+html{
+  scroll-behavior:smooth;
+  overflow-x:hidden;
+  max-width:100%;
+}
+
+body{
+  background:var(--black);
+  color:var(--off);
+  font-family:'Inter',sans-serif;
+  overflow-x:hidden;
+  max-width:100%;
+  width:100%;
+}
+
+/* HERO */
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:2rem;
+  overflow:hidden;
+  background:
+    linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.75)),
+    radial-gradient(circle at top,#35543f 0%, #1D3B2A 30%, #111111 100%);
+}
+
+.hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 55px,
+    rgba(255,255,255,.02) 56px
+  );
+  opacity:.4;
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  max-width:900px;
+  animation:fade 1.5s ease;
+}
+
+.logo{
+  width:180px;
+  aspect-ratio:1/1;
+  object-fit:contain;
+  border-radius:50%;
+  margin-bottom:2rem;
+  box-shadow:0 20px 50px rgba(0,0,0,.45);
+}
+
+.hero-small{
+  text-transform:uppercase;
+  letter-spacing:.35rem;
+  font-size:.8rem;
+  color:var(--stone);
+  margin-bottom:1rem;
+}
+
+.hero h1{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(4rem,10vw,8rem);
+  line-height:.9;
+  letter-spacing:-0.06em;
+  margin-bottom:1rem;
+}
+
+.hero-date{
+  letter-spacing:.35rem;
+  text-transform:uppercase;
+  color:var(--stone);
+  margin-bottom:2.5rem;
+}
+
+.hero-btn{
+  display:inline-block;
+  padding:1rem 2rem;
+  border:1px solid rgba(255,255,255,.15);
+  color:var(--off);
+  text-decoration:none;
+  text-transform:uppercase;
+  letter-spacing:.15rem;
+  font-size:.8rem;
+  background:rgba(255,255,255,.05);
+  backdrop-filter:blur(10px);
+  transition:.4s ease;
+}
+
+.hero-btn:hover{ background:rgba(255,255,255,.12); transform:translateY(-2px); }
+
+/* SECTIONS */
+.section{
+  max-width:1200px;
+  margin:auto;
+  padding:6rem 1.5rem;
+}
+
+.eyebrow{
+  display:inline-block;
+  margin-bottom:1rem;
+  text-transform:uppercase;
+  letter-spacing:.35rem;
+  color:var(--stone);
+  font-size:.75rem;
+}
+
+.title{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(2rem,5vw,4rem);
+  line-height:1;
+  margin-bottom:1.5rem;
+}
+
+.intro{
+  max-width:700px;
+  line-height:1.8;
+  color:rgba(255,255,255,.7);
+}
+
+/* CARDS */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:1.5rem;
+  margin-top:4rem;
+}
+
+.card{
+  padding:3rem;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.03);
+  transition:.4s ease;
+  position:relative;
+  overflow:hidden;
+}
+
+.card::before{
+  content:'';
+  position:absolute;
+  left:0; top:0;
+  width:3px; height:100%;
+  background:var(--forest);
+}
+
+.card:hover{ transform:translateY(-8px); border-color:rgba(255,255,255,.18); }
+
+.card-small{
+  text-transform:uppercase;
+  letter-spacing:.2rem;
+  color:var(--stone);
+  font-size:.8rem;
+}
+
+.card h3{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:4rem;
+  margin:2rem 0 .5rem;
+}
+
+.card-elev{ color:var(--stone); margin-bottom:2rem; }
+
+.line{ width:100%; height:1px; background:rgba(255,255,255,.08); margin-bottom:2rem; }
+
+.card p{ color:rgba(255,255,255,.75); line-height:1.8; }
+
+.card-tags{
+  margin-top:1.5rem;
+  display:flex;
+  gap:.5rem;
+  flex-wrap:wrap;
+}
+
+.tag{
+  font-size:.7rem;
+  letter-spacing:.1rem;
+  text-transform:uppercase;
+  border:1px solid rgba(255,255,255,.15);
+  padding:.3rem .8rem;
+  color:var(--stone);
+}
+
+/* EXPERIENCE */
+.experience{ background:linear-gradient(to bottom,#171717,#111111); }
+
+.quote-box{
+  margin-top:4rem;
+  border-left:2px solid var(--forest);
+  padding-left:2rem;
+}
+
+.quote{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(2rem,5vw,4rem);
+  line-height:1;
+  margin-bottom:1.5rem;
+}
+
+.quote-sub{ color:rgba(255,255,255,.7); line-height:1.8; }
+
+/* INFO */
+.info{ border-top:1px solid rgba(255,255,255,.08); }
+
+.info-grid{ margin-top:4rem; }
+
+.info-row{
+  display:flex;
+  justify-content:space-between;
+  gap:2rem;
+  padding:1.5rem 0;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.info-row span{ color:rgba(255,255,255,.45); }
+
+/* LISTA DE ESPERA */
+.waitlist-section{
+  border-top:1px solid rgba(255,255,255,.08);
+  padding: 6rem 1.5rem;
+  text-align:center;
+}
+
+.waitlist-section .eyebrow{ margin-bottom:1rem; }
+
+.waitlist-section .title{
+  max-width:600px;
+  margin: 0 auto 1.5rem;
+}
+
+.waitlist-section .intro{
+  margin: 0 auto 3rem;
+  text-align:center;
+}
+
+/* iframe Brevo — fondo oscuro para integrarlo */
+.brevo-iframe-wrap{
+  max-width: 540px;
+  margin: 0 auto;
+  border: 1px solid rgba(255,255,255,.1);
+  background: rgba(255,255,255,.03);
+  overflow: hidden;
+}
+
+.brevo-iframe-wrap iframe{
+  display: block;
+  width: 100%;
+  border: none;
+  /* forzamos fondo transparente mediante filtro */
+  filter: invert(0);
+}
+
+/* FOOTER */
+footer{
+  padding:4rem 1.5rem;
+  border-top:1px solid rgba(255,255,255,.08);
+  text-align:center;
+}
+
+footer p{ color:rgba(255,255,255,.45); }
+
+.footer-logo{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:2rem;
+  margin-bottom:1rem;
+}
+
+.footer-links{
+  display:flex;
+  justify-content:center;
+  gap:2rem;
+  margin:2rem 0;
+}
+
+.footer-links a{
+  color:rgba(255,255,255,.7);
+  text-decoration:none;
+  transition:.3s;
+}
+
+.footer-links a:hover{ color:var(--off); }
+
+/* ANIMATIONS */
+.fade{
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s ease;
+}
+
+.fade.show{ opacity:1; transform:translateY(0); }
+
+@keyframes fade{
+  from{ opacity:0; transform:translateY(30px); }
+  to{ opacity:1; transform:translateY(0); }
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .section{ padding:5rem 1.5rem; }
+  .card{ padding:2rem; }
+  .card h3{ font-size:3rem; }
+  .info-row{ flex-direction:column; gap:.5rem; }
+  .waitlist-section{ padding:5rem 1.5rem; }
+  .hero h1{ letter-spacing:-0.03em; }
+  .quote{ word-break:break-word; }
+}
+
+@media(max-width:480px){
+  .cards{ grid-template-columns:1fr; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <img class="logo" src="logo.jpg" alt="ANCARES TRAIL">
+    <p class="hero-small">VALLE DE ANCARES · LEÓN</p>
+    <h1>ANCARES TRAIL</h1>
+    <p class="hero-date">3 OCTUBRE 2026</p>
+    <a href="#waitlist" class="hero-btn">Inscripciones próximamente</a>
+  </div>
+</section>
+
+<!-- DISTANCIAS -->
+<section class="section fade">
+  <span class="eyebrow">DISTANCIAS</span>
+  <h2 class="title">Dos formas de vivir Ancares.</h2>
+  <p class="intro">
+    Montaña salvaje, senderos ancestrales, niebla y otoño.<br>
+    Una experiencia creada para quienes buscan algo más que una carrera.
+  </p>
+
+  <div class="cards">
+    <div class="card">
+      <span class="card-small">ANCARES TRAIL</span>
+      <h3>30 km</h3>
+      <div class="card-elev">2.000 m D+</div>
+      <div class="line"></div>
+      <p>
+        Desde el fondo del valle hasta las cimas más emblemáticas de Ancares: <strong>Campanario, Cuiña y Miravalles</strong>.<br>
+        Una travesía técnica por senderos, collados y crestas.
+      </p>
+      <div class="card-tags">
+        <span class="tag">Técnico</span>
+        <span class="tag">Alta montaña</span>
+        <span class="tag">Límite 12h</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="card-small">SPEED TRAIL &amp; ANDARINA</span>
+      <h3>11 km</h3>
+      <div class="card-elev">400 m D+</div>
+      <div class="line"></div>
+      <p>
+        Por las laderas y el fondo del Valle de Ancares, entre ríos y bosques de roble y acebo.<br>
+        Accesible, rápida y con toda la esencia del territorio.
+      </p>
+      <div class="card-tags">
+        <span class="tag">Accesible</span>
+        <span class="tag">Rápida</span>
+        <span class="tag">Familiar</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section experience fade">
+  <span class="eyebrow">EXPERIENCIA</span>
+  <div class="quote-box">
+    <div class="quote">
+      Montaña salvaje.<br>
+      Otoño.<br>
+      Trail auténtico.
+    </div>
+    <p class="quote-sub">
+      ANCARES TRAIL nace para crear una experiencia exclusiva y emocional
+      en uno de los territorios más salvajes del norte de España.
+    </p>
+  </div>
+</section>
+
+<!-- INFO -->
+<section class="section info fade" id="info">
+  <span class="eyebrow">INFORMACIÓN</span>
+  <h2 class="title">Próximamente.</h2>
+  <div class="info-grid">
+    <div class="info-row">
+      <span>Fecha</span>
+      <p>3 Octubre 2026</p>
+    </div>
+    <div class="info-row">
+      <span>Ubicación</span>
+      <p>Valle de Ancares · León</p>
+    </div>
+    <div class="info-row">
+      <span>Inscripciones</span>
+      <p>Próximamente — lista de espera abierta</p>
+    </div>
+    <div class="info-row">
+      <span>Territorio</span>
+      <p>Reserva de la Biosfera · Espacio Natural Protegido</p>
+    </div>
+    <div class="info-row">
+      <span>Contacto</span>
+      <p>info@ancarestrail.es</p>
+    </div>
+  </div>
+</section>
+
+<!-- LISTA DE ESPERA -->
+<section class="waitlist-section fade" id="waitlist">
+  <span class="eyebrow">LISTA DE ESPERA</span>
+  <h2 class="title">Sé el primero en inscribirte.</h2>
+  <p class="intro">
+    Plazas limitadas. Déjanos tu mail y tendrás acceso prioritario
+    cuando abran las inscripciones.
+  </p>
+
+  <div style="max-width:480px; margin:0 auto;">
+    <div style="display:flex;">
+      <input
+        type="email"
+        id="emailInput"
+        placeholder="tu@email.com"
+        style="flex:1; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.15); border-right:none; color:#F5F2ED; font-family:'Inter',sans-serif; font-size:1rem; padding:1rem 1.5rem; outline:none;"
+      />
+      <button
+        onclick="submitBrevo()"
+        style="background:#1D3B2A; color:#F5F2ED; border:1px solid rgba(255,255,255,.15); font-family:'Inter',sans-serif; font-size:.75rem; font-weight:600; letter-spacing:.15rem; text-transform:uppercase; padding:1rem 1.5rem; cursor:pointer; white-space:nowrap; transition:.3s;"
+        onmouseover="this.style.background='#2a5238'"
+        onmouseout="this.style.background='#1D3B2A'"
+      >
+        Apuntarme
+      </button>
+    </div>
+    <p id="formMsg" style="margin-top:1rem; font-size:.85rem; color:rgba(255,255,255,.35); font-style:italic; min-height:1.4rem;">
+      Menos pantalla, más monte.
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">ANCARES TRAIL</div>
+  <div class="footer-links">
+    <a href="https://www.instagram.com/ancarestrail/" target="_blank">Instagram</a>
+    <a href="mailto:info@ancarestrail.es">Contacto</a>
+  </div>
+  <p>ANCARES TRAIL · 2026</p>
+</footer>
+
+<script>
+const fades = document.querySelectorAll('.fade');
+const reveal = () => {
+  const trigger = window.innerHeight * 0.85;
+  fades.forEach(el => {
+    if (el.getBoundingClientRect().top < trigger) {
+      el.classList.add('show');
+    }
+  });
+};
+window.addEventListener('scroll', reveal);
+reveal();
+
+function submitBrevo() {
+  const input = document.getElementById('emailInput');
+  const msg   = document.getElementById('formMsg');
+  const email = input.value.trim();
+
+  if (!email || !email.includes('@') || !email.includes('.')) {
+    msg.textContent = 'Introduce un email válido.';
+    msg.style.color = '#c8892a';
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append('EMAIL', email);
+  formData.append('email_address_check', '');
+  formData.append('locale', 'es');
+
+  fetch('https://d1d6b0a9.sibforms.com/serve/MUIFAE9bzI5z2qYfHSwGY6QwJxv_7J3vZa_fbgRuRTNxfzoTR3ShrHupcP5xx8vImAswLvLVOvBLWe-cdBu2WSqVD-RPfXzh4hy8c6Q47OZAWnVhrtfyn85eyvi94SpH5MMXsrJ6Lo91kpiagv-gmhnY8Rc-ZHsERjDDXXv8hkb2fKJ-9UHbiXJOpz0UMnKlpXb9ltqZzp3rIETBGw==', {
+    method: 'POST',
+    body: formData,
+    mode: 'no-cors'
+  }).then(() => {
+    msg.textContent = '✓ Registro completado. Te informaremos directamente cuando estén disponibles las plazas. ANCARES TRAIL — 3 de octubre de 2026.';
+    msg.style.color = '#4a8c52';
+    input.value = '';
+  }).catch(() => {
+    msg.textContent = '✓ Registro completado. Te informaremos directamente cuando estén disponibles las plazas. ANCARES TRAIL — 3 de octubre de 2026.';
+    msg.style.color = '#4a8c52';
+    input.value = '';
+  });
+}
+</script>
+
+</body>
+</html>
