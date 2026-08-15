@@ -310,6 +310,137 @@ body{
   color:var(--stone);
 }
 
+/* MATERIAL OBLIGATORIO — botón dentro de la tarjeta */
+.material-btn{
+  margin-top:1.8rem;
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:.75rem;
+  background:transparent;
+  border:1px solid rgba(255,255,255,.15);
+  color:var(--off);
+  font-family:'Inter',sans-serif;
+  font-size:.75rem;
+  font-weight:600;
+  letter-spacing:.12rem;
+  text-transform:uppercase;
+  padding:1rem 1.2rem;
+  cursor:pointer;
+  transition:.3s ease;
+}
+
+.material-btn:hover{ background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.3); }
+
+.material-btn svg{ width:14px; height:14px; flex-shrink:0; transition:.3s ease; }
+
+.material-btn:hover svg{ transform:translateX(3px); }
+
+/* MATERIAL OBLIGATORIO — modal */
+.material-overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.8);
+  backdrop-filter:blur(6px);
+  z-index:1000;
+  align-items:center;
+  justify-content:center;
+  padding:1.5rem;
+  opacity:0;
+  transition:opacity .3s ease;
+}
+
+.material-overlay.show{ display:flex; opacity:1; }
+
+.material-modal{
+  background:#161616;
+  border:1px solid rgba(255,255,255,.1);
+  max-width:520px;
+  width:100%;
+  max-height:85vh;
+  overflow-y:auto;
+  padding:2.8rem 2.2rem;
+  position:relative;
+  transform:translateY(20px);
+  transition:transform .3s ease;
+}
+
+.material-overlay.show .material-modal{ transform:translateY(0); }
+
+.material-close{
+  position:absolute;
+  top:1.2rem;
+  right:1.2rem;
+  background:transparent;
+  border:1px solid rgba(255,255,255,.15);
+  color:var(--off);
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  transition:.3s ease;
+  padding:0;
+}
+
+.material-close:hover{ background:rgba(255,255,255,.08); }
+
+.material-close svg{ width:16px; height:16px; }
+
+.material-panel h3{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(1.6rem,4vw,2.2rem);
+  margin:.6rem 0 1.8rem;
+}
+
+.material-list{ list-style:none; }
+
+.material-list li{
+  display:flex;
+  align-items:flex-start;
+  gap:.9rem;
+  padding:1rem 0;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  color:rgba(255,255,255,.85);
+  line-height:1.5;
+  font-size:.95rem;
+}
+
+.material-list li:last-child{ border-bottom:none; }
+
+.material-list li svg{
+  width:18px;
+  height:18px;
+  flex-shrink:0;
+  margin-top:.15rem;
+  color:var(--green);
+}
+
+.material-list li em{ color:rgba(255,255,255,.5); font-style:italic; }
+
+.material-note{
+  margin-top:1.8rem;
+  font-size:.8rem;
+  color:rgba(255,255,255,.45);
+  line-height:1.6;
+  font-style:italic;
+}
+
+/* Móvil: el modal se convierte en bottom sheet para un acceso más fácil */
+@media(max-width:480px){
+  .material-overlay{ padding:0; align-items:flex-end; }
+  .material-modal{
+    max-width:100%;
+    max-height:88vh;
+    border-radius:20px 20px 0 0;
+    padding:2.2rem 1.5rem 2.6rem;
+  }
+}
+
 /* EXPERIENCE */
 .experience{ background:linear-gradient(to bottom,#171717,#111111); }
 
@@ -489,6 +620,10 @@ footer p{ color:rgba(255,255,255,.45); }
         <span class="tag">Alta montaña</span>
         <span class="tag">Límite 8h</span>
       </div>
+      <button class="material-btn" type="button" onclick="openMaterial('30k')">
+        <span>Material obligatorio</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </button>
     </div>
 
     <div class="card">
@@ -505,6 +640,10 @@ footer p{ color:rgba(255,255,255,.45); }
         <span class="tag">Rápida</span>
         <span class="tag">Familiar</span>
       </div>
+      <button class="material-btn" type="button" onclick="openMaterial('11k')">
+        <span>Material obligatorio</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </button>
     </div>
   </div>
 </section>
@@ -619,6 +758,75 @@ footer p{ color:rgba(255,255,255,.45); }
   </button>
 </div>
 
+<!-- MODAL MATERIAL OBLIGATORIO -->
+<div class="material-overlay" id="materialOverlay" onclick="closeMaterialOnOverlay(event)">
+  <div class="material-modal" role="dialog" aria-modal="true" aria-labelledby="materialTitle">
+    <button class="material-close" onclick="closeMaterial()" aria-label="Cerrar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+
+    <div class="material-panel" id="material-30k">
+      <span class="eyebrow">ANCARES TRAIL · 30 KM</span>
+      <h3 id="materialTitle">Material obligatorio</h3>
+      <ul class="material-list">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span>Sistema de hidratación — mínimo 1 L</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span>Vaso plegable o recipiente para los avituallamientos <em>(puede ser el mismo que el sistema de hidratación)</em></span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span>Teléfono móvil operativo</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span>Silbato</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span>Manta térmica</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span>Chaqueta impermeable</span>
+        </li>
+      </ul>
+      <p class="material-note">La organización podrá verificar este material en la salida y en los avituallamientos. Su ausencia puede implicar la no salida o la descalificación.</p>
+    </div>
+
+    <div class="material-panel" id="material-11k" style="display:none;">
+      <span class="eyebrow">SPEED TRAIL &amp; ANDARINA · 11 KM</span>
+      <h3>Material obligatorio</h3>
+      <ul class="material-list">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span>Sistema de hidratación — mínimo 500 mL</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span>Vaso plegable o recipiente para los avituallamientos <em>(puede ser el mismo que el sistema de hidratación)</em></span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span>Teléfono móvil operativo</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span>Silbato</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span>Manta térmica</span>
+        </li>
+      </ul>
+      <p class="material-note">La organización podrá verificar este material en la salida y en los avituallamientos. Su ausencia puede implicar la no salida o la descalificación.</p>
+    </div>
+  </div>
+</div>
+
 <script>
 const fades = document.querySelectorAll('.fade');
 const reveal = () => {
@@ -642,6 +850,28 @@ function acceptCookies() {
   localStorage.setItem('cookiesAccepted', 'true');
   cookieBanner.style.display = 'none';
 }
+
+// Material obligatorio (modal)
+function openMaterial(race) {
+  const overlay = document.getElementById('materialOverlay');
+  document.querySelectorAll('.material-panel').forEach(p => p.style.display = 'none');
+  document.getElementById('material-' + race).style.display = 'block';
+  overlay.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMaterial() {
+  document.getElementById('materialOverlay').classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+function closeMaterialOnOverlay(e) {
+  if (e.target.id === 'materialOverlay') closeMaterial();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeMaterial();
+});
 
 function submitBrevo() {
   const input = document.getElementById('emailInput');
