@@ -541,19 +541,30 @@ body{
   line-height:1.6;
 }
 
-.route-caption a{ color:var(--stone); text-decoration:underline; white-space:nowrap; }
+.route-caption-link{
+  background:none;
+  border:none;
+  padding:0;
+  margin:0;
+  color:var(--stone);
+  text-decoration:underline;
+  font-family:'Inter',sans-serif;
+  font-size:.9rem;
+  cursor:pointer;
+  white-space:nowrap;
+}
 
-/* MAPA DEL RECORRIDO — visor ampliado (lightbox) */
+/* MAPA DEL RECORRIDO — visor ampliado (lightbox con zoom y arrastre) */
 .lightbox-overlay{
   display:none;
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.88);
+  background:rgba(0,0,0,.9);
   backdrop-filter:blur(6px);
   z-index:1000;
   align-items:center;
   justify-content:center;
-  padding:2rem;
+  padding:1.5rem;
   opacity:0;
   transition:opacity .3s ease;
 }
@@ -564,8 +575,8 @@ body{
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:1.2rem;
-  max-width:1200px;
+  gap:1rem;
+  max-width:1300px;
   width:100%;
   transform:translateY(20px);
   transition:transform .3s ease;
@@ -573,14 +584,29 @@ body{
 
 .lightbox-overlay.show .lightbox-inner{ transform:translateY(0); }
 
+.lightbox-viewport{
+  width:100%;
+  height:78vh;
+  max-height:820px;
+  display:flex;
+  overflow:auto;
+  -webkit-overflow-scrolling:touch;
+  border:1px solid rgba(255,255,255,.15);
+  background:#0c0c0c;
+  cursor:zoom-in;
+  overscroll-behavior:contain;
+}
+
+.lightbox-viewport.zoomed{ cursor:grab; }
+.lightbox-viewport.zoomed.dragging{ cursor:grabbing; }
+
 .lightbox-img{
   display:block;
-  width:auto;
-  height:auto;
+  margin:auto;
   max-width:100%;
-  max-height:78vh;
-  border:1px solid rgba(255,255,255,.15);
-  touch-action:pinch-zoom;
+  max-height:100%;
+  user-select:none;
+  -webkit-user-drag:none;
 }
 
 .lightbox-close{
@@ -606,24 +632,12 @@ body{
 
 .lightbox-close svg{ width:18px; height:18px; }
 
-.lightbox-actions{
-  display:flex;
-  align-items:center;
-  gap:1.5rem;
-  flex-wrap:wrap;
-  justify-content:center;
+.lightbox-hint{
+  color:rgba(255,255,255,.45);
+  font-size:.78rem;
+  letter-spacing:.03rem;
   text-align:center;
 }
-
-.lightbox-actions a{
-  color:var(--stone);
-  font-size:.8rem;
-  letter-spacing:.1rem;
-  text-transform:uppercase;
-  text-decoration:underline;
-}
-
-.lightbox-hint{ color:rgba(255,255,255,.4); font-size:.75rem; letter-spacing:.05rem; }
 
 @media(max-width:768px){
   .route-panel-content{ padding-top:2rem; }
@@ -631,9 +645,9 @@ body{
 
 @media(max-width:480px){
   .route-toggle{ width:100%; justify-content:space-between; }
-  .lightbox-overlay{ padding:1.2rem; }
-  .lightbox-img{ max-height:68vh; }
-  .lightbox-actions{ flex-direction:column; gap:.6rem; }
+  .lightbox-overlay{ padding:.75rem; }
+  .lightbox-viewport{ height:72vh; }
+  .lightbox-hint{ font-size:.72rem; padding:0 .5rem; }
 }
 
 /* EXPERIENCE */
@@ -886,7 +900,7 @@ footer p{ color:rgba(255,255,255,.45); }
         </div>
         <div class="route-caption">
           <span>Ancares Trail (30 km) y Speed Trail (11 km), con los tres avituallamientos y el corte de tiempo en el Puerto de Ancares.</span>
-          <a href="recorrido-ancares-trail.webp" target="_blank" rel="noopener">Ver a tamaño completo ↗</a>
+          <button type="button" class="route-caption-link" onclick="openRouteLightbox()">Ver en detalle</button>
         </div>
       </div>
     </div>
@@ -1078,17 +1092,16 @@ footer p{ color:rgba(255,255,255,.45); }
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
   </button>
   <div class="lightbox-inner">
-    <img
-      id="lightboxImg"
-      class="lightbox-img"
-      alt="Mapa del recorrido de Ancares Trail: 30 km circulares desde Pereda de Ancares, con paso por Braña de Pereda, Campanario, Cuiña (1.997 m), Puerto de Ancares y Miravalles (1.966 m). Incluye el trazado de la Speed Trail y Andarina y los tres avituallamientos."
-      width="1280"
-      height="720"
-    >
-    <div class="lightbox-actions">
-      <a href="recorrido-ancares-trail.webp" target="_blank" rel="noopener">Abrir imagen en pestaña nueva ↗</a>
-      <span class="lightbox-hint">Pellizca la pantalla para hacer zoom</span>
+    <div class="lightbox-viewport" id="lightboxViewport">
+      <img
+        id="lightboxImg"
+        class="lightbox-img"
+        alt="Mapa del recorrido de Ancares Trail: 30 km circulares desde Pereda de Ancares, con paso por Braña de Pereda, Campanario, Cuiña (1.997 m), Puerto de Ancares y Miravalles (1.966 m). Incluye el trazado de la Speed Trail y Andarina y los tres avituallamientos."
+        width="1280"
+        height="720"
+      >
     </div>
+    <p class="lightbox-hint" id="lightboxHint">Haz clic o toca la imagen para ampliarla</p>
   </div>
 </div>
 
@@ -1130,6 +1143,91 @@ function closeMaterial() {
   document.body.style.overflow = '';
 }
 
+// Mapa del recorrido (visor ampliado con zoom y arrastre)
+const lbState = { zoomed:false, fitW:0, fitH:0, dragging:false, moved:false, startX:0, startY:0, scrollLeft:0, scrollTop:0 };
+const ROUTE_IMG_W = 1280, ROUTE_IMG_H = 720, ROUTE_ZOOM = 2.4;
+
+function computeLightboxFitSize() {
+  const viewport = document.getElementById('lightboxViewport');
+  const scale = Math.min(viewport.clientWidth / ROUTE_IMG_W, viewport.clientHeight / ROUTE_IMG_H);
+  lbState.fitW = ROUTE_IMG_W * scale;
+  lbState.fitH = ROUTE_IMG_H * scale;
+}
+
+function applyLightboxSize(zoomFactor) {
+  const img = document.getElementById('lightboxImg');
+  img.style.width  = (lbState.fitW * zoomFactor) + 'px';
+  img.style.height = (lbState.fitH * zoomFactor) + 'px';
+}
+
+function resetLightboxZoom() {
+  const viewport = document.getElementById('lightboxViewport');
+  const hint = document.getElementById('lightboxHint');
+  lbState.zoomed = false;
+  viewport.classList.remove('zoomed');
+  computeLightboxFitSize();
+  applyLightboxSize(1);
+  viewport.scrollTo({ top: 0, left: 0 });
+  hint.textContent = 'Haz clic o toca la imagen para ampliarla';
+}
+
+function toggleLightboxZoom(e) {
+  const viewport = document.getElementById('lightboxViewport');
+  const img = document.getElementById('lightboxImg');
+  const hint = document.getElementById('lightboxHint');
+
+  if (!lbState.zoomed) {
+    const rect = img.getBoundingClientRect();
+    const relX = (e && typeof e.clientX === 'number') ? (e.clientX - rect.left) / rect.width : 0.5;
+    const relY = (e && typeof e.clientY === 'number') ? (e.clientY - rect.top)  / rect.height : 0.5;
+
+    lbState.zoomed = true;
+    viewport.classList.add('zoomed');
+    applyLightboxSize(ROUTE_ZOOM);
+
+    requestAnimationFrame(() => {
+      viewport.scrollLeft = img.offsetWidth  * relX - viewport.clientWidth  / 2;
+      viewport.scrollTop  = img.offsetHeight * relY - viewport.clientHeight / 2;
+    });
+
+    hint.textContent = 'Arrastra para moverte · haz clic para reducir';
+  } else {
+    resetLightboxZoom();
+  }
+}
+
+function handleLightboxImgClick(e) {
+  if (lbState.moved) { lbState.moved = false; return; }
+  toggleLightboxZoom(e);
+}
+
+function lightboxMouseDown(e) {
+  if (!lbState.zoomed) return;
+  const viewport = document.getElementById('lightboxViewport');
+  lbState.dragging = true;
+  lbState.moved = false;
+  lbState.startX = e.pageX;
+  lbState.startY = e.pageY;
+  lbState.scrollLeft = viewport.scrollLeft;
+  lbState.scrollTop  = viewport.scrollTop;
+  viewport.classList.add('dragging');
+}
+
+function lightboxMouseMove(e) {
+  if (!lbState.dragging) return;
+  const viewport = document.getElementById('lightboxViewport');
+  const dx = e.pageX - lbState.startX;
+  const dy = e.pageY - lbState.startY;
+  if (Math.abs(dx) > 4 || Math.abs(dy) > 4) lbState.moved = true;
+  viewport.scrollLeft = lbState.scrollLeft - dx;
+  viewport.scrollTop  = lbState.scrollTop  - dy;
+}
+
+function lightboxMouseUp() {
+  lbState.dragging = false;
+  document.getElementById('lightboxViewport').classList.remove('dragging');
+}
+
 function closeMaterialOnOverlay(e) {
   if (e.target.id === 'materialOverlay') closeMaterial();
 }
@@ -1162,16 +1260,33 @@ function openRouteLightbox() {
   }
   overlay.classList.add('show');
   document.body.style.overflow = 'hidden';
+  requestAnimationFrame(resetLightboxZoom);
 }
 
 function closeRouteLightbox() {
   document.getElementById('routeLightbox').classList.remove('show');
   document.body.style.overflow = '';
+  resetLightboxZoom();
 }
 
 function closeRouteLightboxOnOverlay(e) {
   if (e.target.id === 'routeLightbox') closeRouteLightbox();
 }
+
+(function initLightboxInteractions() {
+  const viewport = document.getElementById('lightboxViewport');
+  const img = document.getElementById('lightboxImg');
+
+  img.addEventListener('click', handleLightboxImgClick);
+  viewport.addEventListener('mousedown', lightboxMouseDown);
+  window.addEventListener('mousemove', lightboxMouseMove);
+  window.addEventListener('mouseup', lightboxMouseUp);
+  window.addEventListener('resize', () => {
+    if (document.getElementById('routeLightbox').classList.contains('show')) {
+      resetLightboxZoom();
+    }
+  });
+})();
 
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
