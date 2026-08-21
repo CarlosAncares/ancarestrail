@@ -441,6 +441,201 @@ body{
   }
 }
 
+/* MAPA DEL RECORRIDO — botón desplegable */
+.route-toggle{
+  display:inline-flex;
+  align-items:center;
+  gap:.9rem;
+  margin-top:3rem;
+  width:auto;
+  background:transparent;
+  border:1px solid rgba(255,255,255,.15);
+  color:var(--off);
+  font-family:'Inter',sans-serif;
+  font-size:.75rem;
+  font-weight:600;
+  letter-spacing:.15rem;
+  text-transform:uppercase;
+  padding:1.1rem 1.6rem;
+  cursor:pointer;
+  transition:.3s ease;
+}
+
+.route-toggle:hover{ background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.3); }
+
+.route-toggle .route-chevron{ width:14px; height:14px; flex-shrink:0; transition:transform .35s ease; }
+
+.route-toggle[aria-expanded="true"] .route-chevron{ transform:rotate(180deg); }
+
+/* MAPA DEL RECORRIDO — panel desplegable (animado con grid-template-rows) */
+.route-panel{
+  display:grid;
+  grid-template-rows:0fr;
+  transition:grid-template-rows .6s cubic-bezier(.4,0,.2,1);
+}
+
+.route-panel.open{ grid-template-rows:1fr; }
+
+.route-panel-inner{ overflow:hidden; }
+
+.route-panel-content{ padding-top:2.5rem; max-width:900px; }
+
+.route-img-wrap{
+  position:relative;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.03);
+  overflow:hidden;
+}
+
+.route-img-btn{
+  display:block;
+  width:100%;
+  padding:0;
+  margin:0;
+  border:none;
+  background:transparent;
+  cursor:zoom-in;
+  line-height:0;
+}
+
+.route-img{
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:1280/720;
+  background:rgba(255,255,255,.03);
+  transition:transform .5s ease;
+}
+
+.route-img-btn:hover .route-img{ transform:scale(1.02); }
+
+.route-zoom-badge{
+  position:absolute;
+  right:1rem;
+  bottom:1rem;
+  display:flex;
+  align-items:center;
+  gap:.5rem;
+  background:rgba(17,17,17,.75);
+  backdrop-filter:blur(6px);
+  border:1px solid rgba(255,255,255,.15);
+  color:var(--off);
+  font-size:.7rem;
+  letter-spacing:.1rem;
+  text-transform:uppercase;
+  padding:.5rem .9rem;
+  pointer-events:none;
+}
+
+.route-zoom-badge svg{ width:14px; height:14px; }
+
+.route-caption{
+  margin-top:1.2rem;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:.75rem 1.5rem;
+  color:rgba(255,255,255,.55);
+  font-size:.9rem;
+  line-height:1.6;
+}
+
+.route-caption a{ color:var(--stone); text-decoration:underline; white-space:nowrap; }
+
+/* MAPA DEL RECORRIDO — visor ampliado (lightbox) */
+.lightbox-overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.88);
+  backdrop-filter:blur(6px);
+  z-index:1000;
+  align-items:center;
+  justify-content:center;
+  padding:2rem;
+  opacity:0;
+  transition:opacity .3s ease;
+}
+
+.lightbox-overlay.show{ display:flex; opacity:1; }
+
+.lightbox-inner{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:1.2rem;
+  max-width:1200px;
+  width:100%;
+  transform:translateY(20px);
+  transition:transform .3s ease;
+}
+
+.lightbox-overlay.show .lightbox-inner{ transform:translateY(0); }
+
+.lightbox-img{
+  display:block;
+  width:auto;
+  height:auto;
+  max-width:100%;
+  max-height:78vh;
+  border:1px solid rgba(255,255,255,.15);
+  touch-action:pinch-zoom;
+}
+
+.lightbox-close{
+  position:fixed;
+  top:1.2rem;
+  right:1.2rem;
+  z-index:1001;
+  background:rgba(17,17,17,.6);
+  border:1px solid rgba(255,255,255,.2);
+  color:var(--off);
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  transition:.3s ease;
+  padding:0;
+}
+
+.lightbox-close:hover{ background:rgba(255,255,255,.12); }
+
+.lightbox-close svg{ width:18px; height:18px; }
+
+.lightbox-actions{
+  display:flex;
+  align-items:center;
+  gap:1.5rem;
+  flex-wrap:wrap;
+  justify-content:center;
+  text-align:center;
+}
+
+.lightbox-actions a{
+  color:var(--stone);
+  font-size:.8rem;
+  letter-spacing:.1rem;
+  text-transform:uppercase;
+  text-decoration:underline;
+}
+
+.lightbox-hint{ color:rgba(255,255,255,.4); font-size:.75rem; letter-spacing:.05rem; }
+
+@media(max-width:768px){
+  .route-panel-content{ padding-top:2rem; }
+}
+
+@media(max-width:480px){
+  .route-toggle{ width:100%; justify-content:space-between; }
+  .lightbox-overlay{ padding:1.2rem; }
+  .lightbox-img{ max-height:68vh; }
+  .lightbox-actions{ flex-direction:column; gap:.6rem; }
+}
+
 /* EXPERIENCE */
 .experience{ background:linear-gradient(to bottom,#171717,#111111); }
 
@@ -648,6 +843,56 @@ footer p{ color:rgba(255,255,255,.45); }
   </div>
 </section>
 
+<!-- RECORRIDO -->
+<section class="section fade" id="recorrido">
+  <span class="eyebrow">RECORRIDO</span>
+  <h2 class="title">El trazado sobre el terreno.</h2>
+  <p class="intro">
+    30 km circulares desde Pereda de Ancares, con paso por Campanario, Cuiña (1.997 m) y Miravalles.<br>
+    Consulta el mapa con los tres avituallamientos y el punto de corte del Puerto de Ancares.
+  </p>
+
+  <button
+    class="route-toggle"
+    type="button"
+    id="routeToggleBtn"
+    aria-expanded="false"
+    aria-controls="routePanel"
+    onclick="toggleRoute()"
+  >
+    <span id="routeToggleLabel">Ver mapa del recorrido</span>
+    <svg class="route-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+  </button>
+
+  <div class="route-panel" id="routePanel">
+    <div class="route-panel-inner">
+      <div class="route-panel-content">
+        <div class="route-img-wrap">
+          <button type="button" class="route-img-btn" onclick="openRouteLightbox()" aria-label="Ampliar mapa del recorrido">
+            <img
+              id="routeImg"
+              class="route-img"
+              data-src="recorrido-ancares-trail.webp"
+              alt="Mapa del recorrido de Ancares Trail: 30 km circulares desde Pereda de Ancares, con paso por Braña de Pereda, Campanario, Cuiña (1.997 m), Puerto de Ancares y Miravalles (1.966 m). Incluye el trazado de la Speed Trail y Andarina y los tres avituallamientos."
+              width="1280"
+              height="720"
+              loading="lazy"
+            >
+          </button>
+          <span class="route-zoom-badge" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            Ampliar
+          </span>
+        </div>
+        <div class="route-caption">
+          <span>Ancares Trail (30 km) y Speed Trail (11 km), con los tres avituallamientos y el corte de tiempo en el Puerto de Ancares.</span>
+          <a href="recorrido-ancares-trail.webp" target="_blank" rel="noopener">Ver a tamaño completo ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- EXPERIENCE -->
 <section class="section experience fade">
   <span class="eyebrow">EXPERIENCIA</span>
@@ -827,6 +1072,26 @@ footer p{ color:rgba(255,255,255,.45); }
   </div>
 </div>
 
+<!-- LIGHTBOX MAPA DEL RECORRIDO -->
+<div class="lightbox-overlay" id="routeLightbox" onclick="closeRouteLightboxOnOverlay(event)">
+  <button class="lightbox-close" onclick="closeRouteLightbox()" aria-label="Cerrar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+  </button>
+  <div class="lightbox-inner">
+    <img
+      id="lightboxImg"
+      class="lightbox-img"
+      alt="Mapa del recorrido de Ancares Trail: 30 km circulares desde Pereda de Ancares, con paso por Braña de Pereda, Campanario, Cuiña (1.997 m), Puerto de Ancares y Miravalles (1.966 m). Incluye el trazado de la Speed Trail y Andarina y los tres avituallamientos."
+      width="1280"
+      height="720"
+    >
+    <div class="lightbox-actions">
+      <a href="recorrido-ancares-trail.webp" target="_blank" rel="noopener">Abrir imagen en pestaña nueva ↗</a>
+      <span class="lightbox-hint">Pellizca la pantalla para hacer zoom</span>
+    </div>
+  </div>
+</div>
+
 <script>
 const fades = document.querySelectorAll('.fade');
 const reveal = () => {
@@ -869,8 +1134,50 @@ function closeMaterialOnOverlay(e) {
   if (e.target.id === 'materialOverlay') closeMaterial();
 }
 
+// Mapa del recorrido (panel desplegable)
+function toggleRoute() {
+  const panel = document.getElementById('routePanel');
+  const btn   = document.getElementById('routeToggleBtn');
+  const label = document.getElementById('routeToggleLabel');
+  const img   = document.getElementById('routeImg');
+
+  const isOpen = panel.classList.toggle('open');
+  btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  label.textContent = isOpen ? 'Ocultar mapa del recorrido' : 'Ver mapa del recorrido';
+
+  // Carga la imagen solo la primera vez que se despliega el panel
+  if (isOpen && !img.src) {
+    img.src = img.dataset.src;
+  }
+}
+
+// Mapa del recorrido (visor ampliado / lightbox)
+function openRouteLightbox() {
+  const overlay     = document.getElementById('routeLightbox');
+  const routeImg    = document.getElementById('routeImg');
+  const lightboxImg = document.getElementById('lightboxImg');
+
+  if (!lightboxImg.src) {
+    lightboxImg.src = routeImg.dataset.src;
+  }
+  overlay.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeRouteLightbox() {
+  document.getElementById('routeLightbox').classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+function closeRouteLightboxOnOverlay(e) {
+  if (e.target.id === 'routeLightbox') closeRouteLightbox();
+}
+
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeMaterial();
+  if (e.key === 'Escape') {
+    closeMaterial();
+    closeRouteLightbox();
+  }
 });
 
 function submitBrevo() {
