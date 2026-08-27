@@ -357,6 +357,42 @@ body{
   font-style:italic;
 }
 
+/* QUÉ INCLUYE LA INSCRIPCIÓN */
+.includes-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:2.8rem 2.5rem;
+  margin-top:4rem;
+}
+
+.includes-item svg{
+  width:26px;
+  height:26px;
+  color:var(--green);
+  margin-bottom:1.3rem;
+}
+
+.includes-item h4{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:1.1rem;
+  font-weight:500;
+  margin-bottom:.6rem;
+}
+
+.includes-item p{
+  color:rgba(255,255,255,.65);
+  line-height:1.7;
+  font-size:.9rem;
+}
+
+.includes-note{
+  margin-top:3rem;
+  font-size:.8rem;
+  color:rgba(255,255,255,.4);
+  line-height:1.6;
+  font-style:italic;
+}
+
 /* MATERIAL OBLIGATORIO — modal */
 .material-overlay{
   display:none;
@@ -889,6 +925,49 @@ footer p{ color:rgba(255,255,255,.45); }
       <p class="gpx-note">Recorrido de referencia, común a Speed Trail y Andarina: puede sufrir pequeñas modificaciones en las próximas semanas. El track definitivo se confirmará durante la última semana antes de la carrera.</p>
     </div>
   </div>
+</section>
+
+<!-- QUÉ INCLUYE LA INSCRIPCIÓN -->
+<section class="section fade" id="incluye">
+  <span class="eyebrow">INSCRIPCIÓN</span>
+  <h2 class="title">Qué incluye tu dorsal.</h2>
+  <p class="intro">
+    Todo lo necesario para correr con tranquilidad, desde la salida hasta la comida post carrera.
+  </p>
+
+  <div class="includes-grid">
+    <div class="includes-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v4l2.5 2.5"></path><path d="M9 2h6"></path></svg>
+      <h4>Dorsal y cronometraje</h4>
+      <p>Dorsal personal y cronometraje electrónico en Ancares Trail y Speed Trail.</p>
+    </div>
+
+    <div class="includes-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s7 7.58 7 12a7 7 0 1 1-14 0c0-4.42 7-12 7-12z"></path></svg>
+      <h4>Avituallamientos</h4>
+      <p>Puntos de avituallamiento a lo largo del recorrido en las tres pruebas.</p>
+    </div>
+
+    <div class="includes-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 12H7L6 8z"></path><path d="M9 8V6a3 3 0 0 1 6 0v2"></path></svg>
+      <h4>Bolsa del corredor</h4>
+      <p>Camiseta técnica y detalle de participación para cada inscrito.</p>
+    </div>
+
+    <div class="includes-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a2 2 0 0 0 2 2h0a2 2 0 0 0 2-2V3"></path><path d="M6 12v9"></path><path d="M18 3c-1.7 0-3 1.8-3 5.5S16.3 13 18 13v8"></path></svg>
+      <h4>Comida post carrera</h4>
+      <p>Paella popular para todos los participantes al finalizar la prueba.</p>
+    </div>
+
+    <div class="includes-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"></path></svg>
+      <h4>Seguro</h4>
+      <p>Seguro de accidentes y responsabilidad civil incluido en la inscripción.</p>
+    </div>
+  </div>
+
+  <p class="includes-note">El cronometraje aplica a Ancares Trail y Speed Trail. La Andarina es una prueba no competitiva, sin clasificación por tiempos.</p>
 </section>
 
 <!-- RECORRIDO -->
