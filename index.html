@@ -337,6 +337,26 @@ body{
 
 .material-btn:hover svg{ transform:translateX(3px); }
 
+/* Acciones de la tarjeta (material obligatorio + descarga GPX) */
+.card-actions{
+  margin-top:1.8rem;
+  display:flex;
+  flex-direction:column;
+  gap:.9rem;
+}
+
+.card-actions .material-btn{ margin-top:0; }
+
+.gpx-btn{ text-decoration:none; }
+
+.gpx-note{
+  margin-top:1rem;
+  font-size:.75rem;
+  color:rgba(255,255,255,.4);
+  line-height:1.6;
+  font-style:italic;
+}
+
 /* MATERIAL OBLIGATORIO — modal */
 .material-overlay{
   display:none;
@@ -829,10 +849,17 @@ footer p{ color:rgba(255,255,255,.45); }
         <span class="tag">Alta montaña</span>
         <span class="tag">Límite 8h</span>
       </div>
-      <button class="material-btn" type="button" onclick="openMaterial('30k')">
-        <span>Material obligatorio</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-      </button>
+      <div class="card-actions">
+        <button class="material-btn" type="button" onclick="openMaterial('30k')">
+          <span>Material obligatorio</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </button>
+        <a class="material-btn gpx-btn" href="AncaresTrail2026-30km_PROVISIONAL.gpx" download>
+          <span>Descargar track GPX (provisional)</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"></path><polyline points="7 10 12 15 17 10"></polyline><path d="M5 21h14"></path></svg>
+        </a>
+      </div>
+      <p class="gpx-note">Recorrido de referencia: puede sufrir pequeñas modificaciones en las próximas semanas. El track definitivo se confirmará durante la última semana antes de la carrera.</p>
     </div>
 
     <div class="card">
@@ -849,10 +876,17 @@ footer p{ color:rgba(255,255,255,.45); }
         <span class="tag">Rápida</span>
         <span class="tag">Familiar</span>
       </div>
-      <button class="material-btn" type="button" onclick="openMaterial('11k')">
-        <span>Material obligatorio</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-      </button>
+      <div class="card-actions">
+        <button class="material-btn" type="button" onclick="openMaterial('11k')">
+          <span>Material obligatorio</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </button>
+        <a class="material-btn gpx-btn" href="SpeedTrail-Ancares2026-11km_PROVISIONAL.gpx" download>
+          <span>Descargar track GPX (provisional)</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"></path><polyline points="7 10 12 15 17 10"></polyline><path d="M5 21h14"></path></svg>
+        </a>
+      </div>
+      <p class="gpx-note">Recorrido de referencia, común a Speed Trail y Andarina: puede sufrir pequeñas modificaciones en las próximas semanas. El track definitivo se confirmará durante la última semana antes de la carrera.</p>
     </div>
   </div>
 </section>
@@ -926,7 +960,7 @@ footer p{ color:rgba(255,255,255,.45); }
 <!-- INFO -->
 <section class="section info fade" id="info">
   <span class="eyebrow">INFORMACIÓN</span>
-  <h2 class="title">Próximamente.</h2>
+  <h2 class="title">Todo lo que necesitas saber.</h2>
   <div class="info-grid">
     <div class="info-row">
       <span>Fecha</span>
@@ -1035,6 +1069,10 @@ footer p{ color:rgba(255,255,255,.45); }
         <li>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
           <span>Vaso plegable o recipiente para los avituallamientos <em>(puede ser el mismo que el sistema de hidratación)</em></span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span>Frontal <em>(la primera hora de carrera transcurre antes del amanecer)</em></span>
         </li>
         <li>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
