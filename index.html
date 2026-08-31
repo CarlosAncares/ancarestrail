@@ -65,8 +65,9 @@
   },
   "offers": {
     "@type": "Offer",
-    "availability": "https://schema.org/ComingSoon",
-    "url": "https://ancarestrail.es/#waitlist"
+    "availability": "https://schema.org/InStock",
+    "validThrough": "2026-09-20",
+    "url": "https://www.deporticket.com/web-evento/13855-ancares-trail"
   }
 }
 </script>
@@ -218,6 +219,48 @@ body{
 }
 
 .hero-btn:hover{ background:rgba(255,255,255,.12); transform:translateY(-2px); }
+
+/* INSCRIPCIÓN — CTA sólido hacia Deporticket */
+.enroll-btn{
+  display:inline-block;
+  padding:1rem 2.2rem;
+  border:1px solid var(--forest);
+  background:var(--forest);
+  color:var(--off);
+  text-decoration:none;
+  text-transform:uppercase;
+  letter-spacing:.15rem;
+  font-size:.8rem;
+  font-weight:600;
+  transition:.3s ease;
+}
+
+.enroll-btn:hover{ background:#2a5238; border-color:#2a5238; transform:translateY(-2px); }
+
+.enroll-cta{
+  max-width:600px;
+  margin:0 auto 3rem;
+  text-align:center;
+  padding:2rem;
+  border:1px solid rgba(255,255,255,.1);
+  background:rgba(255,255,255,.03);
+}
+
+.enroll-cta p{
+  color:rgba(255,255,255,.75);
+  margin-bottom:1.2rem;
+}
+
+.enroll-cta .enroll-deadline{
+  color:var(--stone);
+  font-weight:600;
+}
+
+.card-actions .enroll-btn{
+  width:100%;
+  text-align:center;
+  box-sizing:border-box;
+}
 
 /* SECTIONS */
 .section{
@@ -857,7 +900,7 @@ footer p{ color:rgba(255,255,255,.45); }
     <p class="hero-small">VALLE DE ANCARES · LEÓN</p>
     <h1>ANCARES TRAIL</h1>
     <p class="hero-date">3 OCTUBRE 2026</p>
-    <a href="#waitlist" class="hero-btn">Inscripciones próximamente</a>
+    <a href="https://www.deporticket.com/web-evento/13855-ancares-trail" target="_blank" rel="noopener" class="hero-btn">Inscríbete — hasta el 20 de septiembre</a>
   </div>
 </section>
 
@@ -886,6 +929,7 @@ footer p{ color:rgba(255,255,255,.45); }
         <span class="tag">Límite 8h</span>
       </div>
       <div class="card-actions">
+        <a class="enroll-btn" href="https://www.deporticket.com/web-evento/13855-ancares-trail" target="_blank" rel="noopener">Inscríbete</a>
         <button class="material-btn" type="button" onclick="openMaterial('30k')">
           <span>Material obligatorio</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
@@ -913,6 +957,7 @@ footer p{ color:rgba(255,255,255,.45); }
         <span class="tag">Familiar</span>
       </div>
       <div class="card-actions">
+        <a class="enroll-btn" href="https://www.deporticket.com/web-evento/13855-ancares-trail" target="_blank" rel="noopener">Inscríbete</a>
         <button class="material-btn" type="button" onclick="openMaterial('11k')">
           <span>Material obligatorio</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
@@ -934,6 +979,11 @@ footer p{ color:rgba(255,255,255,.45); }
   <p class="intro">
     Todo lo necesario para correr con tranquilidad, desde la salida hasta la comida post carrera.
   </p>
+
+  <div class="enroll-cta">
+    <p>Inscripciones abiertas en Deporticket hasta el <span class="enroll-deadline">20 de septiembre</span>.</p>
+    <a class="enroll-btn" href="https://www.deporticket.com/web-evento/13855-ancares-trail" target="_blank" rel="noopener">Inscríbete en Deporticket</a>
+  </div>
 
   <div class="includes-grid">
     <div class="includes-item">
@@ -1051,7 +1101,7 @@ footer p{ color:rgba(255,255,255,.45); }
     </div>
     <div class="info-row">
       <span>Inscripciones</span>
-      <p>Próximamente — lista de espera abierta</p>
+      <p>Abiertas hasta el 20 de septiembre en <a href="https://www.deporticket.com/web-evento/13855-ancares-trail" target="_blank" rel="noopener" style="color:var(--stone); text-decoration:underline;">Deporticket</a></p>
     </div>
     <div class="info-row">
       <span>Territorio</span>
@@ -1066,11 +1116,11 @@ footer p{ color:rgba(255,255,255,.45); }
 
 <!-- LISTA DE ESPERA -->
 <section class="waitlist-section fade" id="waitlist">
-  <span class="eyebrow">LISTA DE ESPERA</span>
-  <h2 class="title">Sé el primero en inscribirte.</h2>
+  <span class="eyebrow">PRÓXIMAS EDICIONES</span>
+  <h2 class="title">¿Se te pasó el plazo o ya piensas en la próxima?</h2>
   <p class="intro">
-    Plazas limitadas. Déjanos tu mail y tendrás acceso prioritario
-    cuando abran las inscripciones.
+    Las inscripciones de esta edición están abiertas en Deporticket hasta el 20 de septiembre.
+    Si prefieres esperar, déjanos tu email y tendrás acceso prioritario en próximas convocatorias de ANCARES TRAIL.
   </p>
 
   <div style="max-width:480px; margin:0 auto;">
@@ -1440,12 +1490,12 @@ function submitBrevo() {
     body: formData,
     mode: 'no-cors'
   }).then(() => {
-    msg.textContent = '✓ Registro completado. Te informaremos directamente cuando estén disponibles las plazas. ANCARES TRAIL — 3 de octubre de 2026.';
+    msg.textContent = '✓ Registro completado. Te avisaremos con acceso prioritario en la próxima convocatoria de ANCARES TRAIL.';
     msg.style.color = '#4a8c52';
     input.value = '';
     check.checked = false;
   }).catch(() => {
-    msg.textContent = '✓ Registro completado. Te informaremos directamente cuando estén disponibles las plazas. ANCARES TRAIL — 3 de octubre de 2026.';
+    msg.textContent = '✓ Registro completado. Te avisaremos con acceso prioritario en la próxima convocatoria de ANCARES TRAIL.';
     msg.style.color = '#4a8c52';
     input.value = '';
     check.checked = false;
