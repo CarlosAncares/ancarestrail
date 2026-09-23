@@ -911,87 +911,77 @@ body{
 }
 
 /* PATROCINADORES */
-.sponsors{ border-top:1px solid rgba(255,255,255,.08); }
+.sponsors{
+  background:var(--off);
+  padding:6rem 1.5rem;
+}
 
-.sponsors-tier{ margin-top:4rem; }
+.sponsors-inner{
+  max-width:1200px;
+  margin:0 auto;
+}
+
+.sponsors .eyebrow{ color:var(--forest); }
+
+.sponsors .title{ color:#18140f; }
+
+.sponsors .intro{ color:rgba(20,16,12,.65); }
+
+.sponsors-tier{ margin-top:3.6rem; }
 
 .sponsors-tier-label{
   display:block;
   text-transform:uppercase;
   letter-spacing:.15rem;
   font-size:.75rem;
-  color:rgba(255,255,255,.45);
-  margin-bottom:1.8rem;
+  color:rgba(20,16,12,.45);
+  margin-bottom:2.2rem;
 }
 
+/* Rejilla: cada logo se dimensiona por altura, el ancho lo marca su proporción real */
 .sponsors-grid{
   display:flex;
   flex-wrap:wrap;
-  justify-content:center;
-  gap:1.1rem;
-}
-
-.sponsor-logo{
-  width:188px;
-  height:100px;
-  background:var(--off);
-  border-radius:6px;
-  display:flex;
   align-items:center;
   justify-content:center;
-  padding:1.1rem 1.6rem;
-  transition:.3s ease;
+  gap:3rem 3.5rem;
 }
 
-.sponsor-logo:hover{ transform:translateY(-4px); box-shadow:0 14px 32px rgba(0,0,0,.35); }
-
-.sponsor-logo img{
+.sponsors-grid img{
   display:block;
-  max-width:100%;
-  max-height:100%;
+  height:82px;
   width:auto;
-  height:auto;
+  max-width:230px;
   object-fit:contain;
+  transition:transform .3s ease;
 }
 
-.sponsor-logo--sm{
-  width:148px;
-  height:68px;
-  padding:1rem 1.2rem;
-}
+.sponsors-grid img:hover{ transform:translateY(-3px); }
 
-/* Logos pensados para fondo oscuro (texto claro): tarjeta oscura a juego con la web */
-.sponsor-logo--dark{
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.12);
-}
+.sponsors-grid--secondary{ gap:2.4rem 3rem; }
 
-/* Logos que ya son una pieza cerrada, con su propio fondo: sin tarjeta añadida */
-.sponsor-logo--flat{
-  background:transparent;
-  padding:0;
-  overflow:hidden;
-}
+.sponsors-grid--secondary img{ height:50px; max-width:180px; }
 
-.sponsor-logo--flat img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  border-radius:6px;
-}
+.sponsors-grid--institutional{ gap:2.4rem 3rem; }
 
-/* Patrocinador aún sin logo: nombre en texto, mismo formato de tarjeta */
-.sponsor-logo--text span{
-  font-family:'Space Grotesk',sans-serif;
-  color:#1c1c1c;
-  font-size:1rem;
-  text-align:center;
-  line-height:1.3;
+.sponsors-grid--institutional img{ height:46px; max-width:260px; }
+
+@media(max-width:768px){
+  .sponsors{ padding:5rem 1.5rem; }
+  .sponsors-tier{ margin-top:3rem; }
+  .sponsors-grid{ gap:2.2rem 2.4rem; }
+  .sponsors-grid img{ height:62px; max-width:190px; }
+  .sponsors-grid--secondary{ gap:1.8rem 2.2rem; }
+  .sponsors-grid--secondary img{ height:42px; max-width:150px; }
+  .sponsors-grid--institutional{ gap:1.8rem 2.2rem; }
+  .sponsors-grid--institutional img{ height:38px; max-width:220px; }
 }
 
 @media(max-width:480px){
-  .sponsor-logo{ width:156px; height:88px; padding:1.1rem 1.4rem; }
-  .sponsor-logo--sm{ width:126px; height:58px; padding:.8rem 1rem; }
+  .sponsors-grid{ gap:1.8rem 1.8rem; }
+  .sponsors-grid img{ height:52px; }
+  .sponsors-grid--secondary img{ height:36px; }
+  .sponsors-grid--institutional img{ height:32px; }
 }
 
 /* FOOTER */
@@ -1007,54 +997,6 @@ footer p{ color:rgba(255,255,255,.45); }
   font-family:'Space Grotesk',sans-serif;
   font-size:2rem;
   margin-bottom:1rem;
-}
-
-.footer-institutional{
-  margin-top:2.5rem;
-  padding-top:2.5rem;
-  border-top:1px solid rgba(255,255,255,.08);
-}
-
-.footer-institutional-label{
-  display:block;
-  text-transform:uppercase;
-  letter-spacing:.15rem;
-  font-size:.7rem;
-  color:rgba(255,255,255,.4);
-  margin-bottom:1.5rem;
-}
-
-.footer-institutional-logos{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  align-items:center;
-  gap:1rem;
-}
-
-.footer-inst-logo{
-  width:140px;
-  height:58px;
-  background:var(--off);
-  border-radius:5px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:.8rem 1rem;
-}
-
-.footer-inst-logo img{
-  display:block;
-  max-width:100%;
-  max-height:100%;
-  object-fit:contain;
-}
-
-.footer-inst-logo--wide{ width:300px; }
-
-@media(max-width:480px){
-  .footer-inst-logo{ width:118px; height:50px; }
-  .footer-inst-logo--wide{ width:220px; }
 }
 
 .footer-links{
@@ -1460,51 +1402,42 @@ footer p{ color:rgba(255,255,255,.45); }
 </section>
 
 <!-- PATROCINADORES -->
-<section class="section sponsors fade" id="patrocinadores">
-  <span class="eyebrow">PATROCINADORES</span>
-  <h2 class="title">Quienes hacen posible esta edición.</h2>
-  <p class="intro">
-    Empresas del territorio que respaldan el Ancares Trail en su primera edición.
-  </p>
+<section class="sponsors fade" id="patrocinadores">
+  <div class="sponsors-inner">
+    <span class="eyebrow">PATROCINADORES</span>
+    <h2 class="title">Quienes hacen posible esta edición.</h2>
+    <p class="intro">
+      Empresas e instituciones del territorio que respaldan el Ancares Trail en su primera edición.
+    </p>
 
-  <div class="sponsors-tier">
-    <span class="sponsors-tier-label">Patrocinadores principales</span>
-    <div class="sponsors-grid">
-      <div class="sponsor-logo">
-        <img src="logos/maderas-castaneira.png" alt="Maderas Castañeira" loading="lazy">
-      </div>
-      <div class="sponsor-logo">
-        <img src="logos/ancares-activa.png" alt="Ancares Activa" loading="lazy">
-      </div>
-      <div class="sponsor-logo">
-        <img src="logos/panaderia-alcris.png" alt="Panadería Alcris" loading="lazy">
+    <div class="sponsors-tier">
+      <span class="sponsors-tier-label">Patrocinadores principales</span>
+      <div class="sponsors-grid">
+        <img src="logos/maderas-castaneira.png" alt="Maderas Castañeira" loading="lazy" width="600" height="342">
+        <img src="logos/ancares-activa.png" alt="Ancares Activa" loading="lazy" width="530" height="507">
+        <img src="logos/panaderia-alcris.png" alt="Panadería Alcris" loading="lazy" width="600" height="289">
       </div>
     </div>
-  </div>
 
-  <div class="sponsors-tier">
-    <span class="sponsors-tier-label">Colaboradores</span>
-    <div class="sponsors-grid">
-      <div class="sponsor-logo sponsor-logo--sm sponsor-logo--flat">
-        <img src="logos/embutidos-la-encina.png" alt="Embutidos La Encina" loading="lazy">
+    <div class="sponsors-tier">
+      <span class="sponsors-tier-label">Colaboradores</span>
+      <div class="sponsors-grid sponsors-grid--secondary">
+        <img src="logos/embutidos-la-encina.png" alt="Embutidos La Encina" loading="lazy" width="598" height="600">
+        <img src="logos/invicsa-airtech.png" alt="Invicsa Airtech" loading="lazy" width="532" height="538">
+        <img src="logos/ferreteria-fabero.png" alt="Ferretería García Fabero" loading="lazy" width="600" height="466">
+        <img src="logos/fante.png" alt="Fanté" loading="lazy" width="600" height="534">
+        <img src="logos/drasanvi.png" alt="Drasanvi" loading="lazy" width="600" height="186">
+        <img src="logos/el-rincon-del-cuco.png" alt="El Rincón del Cuco" loading="lazy" width="600" height="273">
+        <img src="logos/distribuciones-raposo.png" alt="Distribuciones Alejandro Raposo" loading="lazy" width="600" height="400">
       </div>
-      <div class="sponsor-logo sponsor-logo--sm">
-        <img src="logos/invicsa-airtech.png" alt="Invicsa Airtech" loading="lazy">
-      </div>
-      <div class="sponsor-logo sponsor-logo--sm">
-        <img src="logos/ferreteria-fabero.png" alt="Ferretería Fabero" loading="lazy">
-      </div>
-      <div class="sponsor-logo sponsor-logo--sm sponsor-logo--dark">
-        <img src="logos/fante.png" alt="Fanté" loading="lazy">
-      </div>
-      <div class="sponsor-logo sponsor-logo--sm sponsor-logo--dark">
-        <img src="logos/drasanvi.png" alt="Drasanvi" loading="lazy">
-      </div>
-      <div class="sponsor-logo sponsor-logo--sm">
-        <img src="logos/el-rincon-del-cuco.png" alt="El Rincón del Cuco" loading="lazy">
-      </div>
-      <div class="sponsor-logo sponsor-logo--sm sponsor-logo--flat">
-        <img src="logos/distribuciones-raposo.png" alt="Distribuciones Alejandro Raposo" loading="lazy">
+    </div>
+
+    <div class="sponsors-tier">
+      <span class="sponsors-tier-label">Con la colaboración institucional de</span>
+      <div class="sponsors-grid sponsors-grid--institutional">
+        <img src="logos/ayuntamiento-valle-de-ancares.png" alt="Ayuntamiento de Valle de Ancares" loading="lazy" width="182" height="308">
+        <img src="logos/consejo-comarcal-bierzo.png" alt="Consejo Comarcal del Bierzo, Turismo del Bierzo y Junta de Castilla y León" loading="lazy" width="600" height="90">
+        <img src="logos/diputacion-leon.png" alt="Diputación de León" loading="lazy" width="600" height="321">
       </div>
     </div>
   </div>
@@ -1513,21 +1446,6 @@ footer p{ color:rgba(255,255,255,.45); }
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">ANCARES TRAIL</div>
-
-  <div class="footer-institutional">
-    <span class="footer-institutional-label">Con la colaboración de</span>
-    <div class="footer-institutional-logos">
-      <div class="footer-inst-logo">
-        <img src="logos/ayuntamiento-valle-de-ancares.png" alt="Ayuntamiento de Valle de Ancares" loading="lazy">
-      </div>
-      <div class="footer-inst-logo footer-inst-logo--wide">
-        <img src="logos/consejo-comarcal-bierzo.png" alt="Consejo Comarcal del Bierzo, Turismo del Bierzo y Junta de Castilla y León" loading="lazy">
-      </div>
-      <div class="footer-inst-logo">
-        <img src="logos/diputacion-leon.png" alt="Diputación de León" loading="lazy">
-      </div>
-    </div>
-  </div>
 
   <div class="footer-links">
     <a href="https://www.instagram.com/ancarestrail/" target="_blank">Instagram</a>
