@@ -944,44 +944,45 @@ body{
   flex-wrap:wrap;
   align-items:center;
   justify-content:center;
-  gap:3rem 3.5rem;
+  gap:3.2rem 4rem;
 }
 
 .sponsors-grid img{
   display:block;
-  height:82px;
   width:auto;
-  max-width:230px;
+  height:auto;
+  max-height:110px;
+  max-width:280px;
   object-fit:contain;
   transition:transform .3s ease;
 }
 
 .sponsors-grid img:hover{ transform:translateY(-3px); }
 
-.sponsors-grid--secondary{ gap:2.4rem 3rem; }
+.sponsors-grid--secondary{ gap:2.6rem 3.2rem; }
 
-.sponsors-grid--secondary img{ height:50px; max-width:180px; }
+.sponsors-grid--secondary img{ max-height:64px; max-width:210px; }
 
-.sponsors-grid--institutional{ gap:2.4rem 3rem; }
+.sponsors-grid--institutional{ gap:2.6rem 3.2rem; }
 
-.sponsors-grid--institutional img{ height:46px; max-width:260px; }
+.sponsors-grid--institutional img{ max-height:58px; max-width:340px; }
 
 @media(max-width:768px){
   .sponsors{ padding:5rem 1.5rem; }
   .sponsors-tier{ margin-top:3rem; }
-  .sponsors-grid{ gap:2.2rem 2.4rem; }
-  .sponsors-grid img{ height:62px; max-width:190px; }
-  .sponsors-grid--secondary{ gap:1.8rem 2.2rem; }
-  .sponsors-grid--secondary img{ height:42px; max-width:150px; }
-  .sponsors-grid--institutional{ gap:1.8rem 2.2rem; }
-  .sponsors-grid--institutional img{ height:38px; max-width:220px; }
+  .sponsors-grid{ gap:2.4rem 2.6rem; }
+  .sponsors-grid img{ max-height:82px; max-width:230px; }
+  .sponsors-grid--secondary{ gap:2rem 2.4rem; }
+  .sponsors-grid--secondary img{ max-height:54px; max-width:170px; }
+  .sponsors-grid--institutional{ gap:2rem 2.4rem; }
+  .sponsors-grid--institutional img{ max-height:48px; max-width:260px; }
 }
 
 @media(max-width:480px){
-  .sponsors-grid{ gap:1.8rem 1.8rem; }
-  .sponsors-grid img{ height:52px; }
-  .sponsors-grid--secondary img{ height:36px; }
-  .sponsors-grid--institutional img{ height:32px; }
+  .sponsors-grid{ gap:2rem 2rem; }
+  .sponsors-grid img{ max-height:70px; }
+  .sponsors-grid--secondary img{ max-height:44px; }
+  .sponsors-grid--institutional img{ max-height:40px; }
 }
 
 /* FOOTER */
